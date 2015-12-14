@@ -179,6 +179,7 @@ function connect (req, opts, fn) {
   var host;
   var self = this;
   var secure = Boolean(opts.secureEndpoint);
+  var tunnel = Boolean(self.proxy.tunnel);
 
   // first we need get a generated FindProxyForURL() function,
   // either cached or retreived from the source
@@ -190,7 +191,7 @@ function connect (req, opts, fn) {
 
     // calculate the `url` parameter
     var defaultPort = secure ? 443 : 80;
-    var path = req.path;
+    var path = req.path || '';
     var firstQuestion = path.indexOf('?');
     var search;
     if (-1 != firstQuestion) {
@@ -251,7 +252,7 @@ function connect (req, opts, fn) {
       // http://dev.chromium.org/developers/design-documents/secure-web-proxy
       var proxyURL = ('HTTPS' === type ? 'https' : 'http') + '://' + parts[1];
       var proxy = extend({}, self.proxy, parse(proxyURL));
-      if (secure) {
+      if (secure || tunnel) {
         agent = new HttpsProxyAgent(proxy);
       } else {
         agent = new HttpProxyAgent(proxy);
