@@ -33,7 +33,7 @@
     "get-uri": "1",
     "http-proxy-agent": "1",
     "https-proxy-agent": "1",
-    "pac-resolver": "twosigma/node-pac-resolver#fix-ip-address-resolution",
+    "pac-resolver": "git+https://github.com/twosigma/node-pac-resolver#fix-ip-address-resolution",
     "socks-proxy-agent": "2",
     "stream-to-buffer": "0.1.0"
   },
