@@ -179,6 +179,9 @@ function connect (req, opts, fn) {
   var host;
   var self = this;
   var secure = Boolean(opts.secureEndpoint);
+  if(opts.port == 443){
+    secure = true
+  }
   var tunnel = Boolean(self.proxy.tunnel);
 
   // first we need get a generated FindProxyForURL() function,
