@@ -241,7 +241,7 @@ function connect (req, opts, fn) {
     if ('DIRECT' == type) {
       // direct connection to the destination endpoint
       var socket;
-      if (secure && ! tunnel) {
+      if (false) {
         socket = tls.connect(opts);
       } else {
         socket = net.connect(opts);
